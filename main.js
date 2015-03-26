@@ -8,24 +8,24 @@ var redis = require('redis')
 var client = redis.createClient(6379, '127.0.0.1', {})
 
 
-///////////// WEB ROUTES 
-
-
+// Task 2
 // Add hook to make it easier to get all visited URLS.
 app.get('/recent', function(req, res, next) 
 {
-	 //  console.log(req.method, req.url);
+	 //  console.log(req.method, req.url); 
+	 // lpush is to store the site urls visited
        client.lpush('urls',req.url);
-	   
+	 // ltrim and lrange used below is to contain the number of urls to 5  
 	   client.ltrim('urls', 0, 4);
 	  
 	   client.lrange('urls',0, 4, function(err,value){ console.log(value);});
-	   client.lrange('urls',0, 4, function(err,value){ res.send(value);});
+	   client.lrange('urls',0, 4, function(err,value){ res.send(value);});  // Returning the recent visited urls back to client
        	   
 	  // next(); // Passing the request to the next handler in the stack.   
 	        
 });
 
+// Task 3
 var items = [];
  app.post('/upload',[ multer({ dest: './uploads/'}), function(req, res){
 //    console.log(req.body) // form fields
@@ -36,7 +36,7 @@ var items = [];
  	   fs.readFile( req.files.image.path, function (err, data) {
  	  		if (err) throw err;
  	  		var img = new Buffer(data).toString('base64');
-			items.push(img);
+			items.push(img);                      // On upload, the images are put in the queue list items
  	  	//	console.log(img);
  		});
  	}
@@ -50,11 +50,11 @@ app.get('/meow', function(req, res) {
  		res.writeHead(200, {'content-type':'text/html'});
  		items.forEach(function (imagedata) 
  		{
-    		temp_Image = imagedata;
-		//	console.log(imagedata);
+    		temp_Image = imagedata;                  
+		//	console.log(imagedata);          
  		});
-		res.write("<h1>\n<img src='data:my_pic.jpg;base64,"+temp_Image+"'/>");
-		items.pop();
+		res.write("<h1>\n<img src='data:my_pic.jpg;base64,"+temp_Image+"'/>");     // For displaying the most recent image to the client
+		items.pop();       // For deleting the recently displayed image
     	res.end();
  	}
  })
@@ -70,25 +70,27 @@ app.get('/meow', function(req, res) {
  })
  
  // HTTP SERVER
+ // Task 4
+ // Running another instance on different port (number 3001)
  var server1 = app.listen(3001, function () {
 
-   var host = server1.address().address
-   var port = server1.address().port
+   var host1 = server1.address().address
+   var port1 = server1.address().port
 
-   console.log('Example app listening at http://%s:%s', host, port)
+   console.log('Example app listening at http://%s:%s', host1, port1)
  })
  
- 
+ // Task 1: /get route
  app.get('/get', function(req, res) {
   client.get("key", function(err,value){ res.send(value) });
-  //res.send('hello world')
-    client.lpush('urls',req.url);
- //  res.send(client.get("key"));
+ 
+  client.lpush('urls',req.url);
+ 
 })
-
+// Task 1: /set route
  app.get('/set', function(req,res) {
   client.lpush('urls',req.url);
   client.set("key","this message will self-destruct in 10 seconds");
-  client.expire("key",10);
+  client.expire("key",10);    // This will expire the key.
 })
 
