@@ -42,7 +42,10 @@ var items = [];
  	}
    res.status(204).end()
  }]);
-
+ 
+ 
+ // Task 3
+// Function that displays the uploaded pics.
 app.get('/meow', function(req, res) {
  	{
 	    client.lpush('urls',req.url);
