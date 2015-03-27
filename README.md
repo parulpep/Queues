@@ -5,7 +5,7 @@ Assignment 3
 
 * Run `npm install`.
 * Install redis and run on localhost:6379
-* The file main.js has the code for routes /get, /set, /upload, /meow and /recent. The file proxy.js demonstrates a proxy      server using a simple redirect method. The server can be instantiated using the following command from the git shell         command line.
+* The file main.js has the code for routes /get, /set, /upload, /meow and /recent. The file proxy.js demonstrates a proxy      server using a simple redirect method. The file can be run using the following command from the git shell command line.
 
         node main.js
 
@@ -22,18 +22,23 @@ The tasks are explained as below and the code files main.js and proxy.js have th
 
 ## Task 2: Complete /recent
 
-* Run localhost:3000/set, localhost:3000/get and then localhost:3000/recent, the page displays the urls visited. This can be done after vising /meow. It will show 5 urls and it keeps on changing with each visiting url and page refresh. It shows the latest 5 urls.
+* Run localhost:3000/set, localhost:3000/get and then localhost:3000/recent any number of times, the page displays the urls    visited. It will show 5 urls and it keeps on changing with each visiting url and page refresh. It shows the latest 5 urls.   The urls are displayed as below:
+
+        $ node main.js
+        Example app listening at http://:::3000
+        Example app listening at http://:::3001
+        [ '/recent', '/get', '/set', '/set', '/get' ]
+        [ '/recent', '/meow', '/meow', '/meow', '/recent' ]
 
 ## Task 3: Complete upload/meow
 
-* While the server is listening at localhost:3000, upload the images using the command below. In place of 'image=@C:\Users', give the complete path of your image file. You can load any number of images. 
+* While the server is listening at localhost:3000, upload the images using the command below (in another git window). In       place of 'image=@C:\Users', give the complete path of the image file. You can load any number of images using the command    below. 
 
 
         $ curl -F "image=@C:\Users\parulpep\Documents\GitHub\Queues/img/morning.jpg" localhost:3000/upload
 
 
-* Then, run localhost:3000/meow, the latest uploaded image is shown. With each refresh, the next image is shown thus showing removal of the displayed image.
-
+* Then, run localhost:3000/meow, the latest uploaded image is shown. With each refresh, the next image in list is shown thus showing removal of the displayed image.
 
 ## Task 4: Additional service instance running
 
@@ -43,5 +48,5 @@ The tasks are explained as below and the code files main.js and proxy.js have th
 ## Task 5: Proxy server
 
 * Run proxy.js using the command 'node proxy.js'
-* If we try running localhost:3002, it will get redirected to local:3000.
+* If we try running localhost:3002, it will get redirected to localhost:3000.
 * 3002 acts as a proxy server. 
