@@ -28,9 +28,9 @@ The tasks are explained as below and the code files main.js and proxy.js have th
 
 * While the server is listening at localhost:3000, upload the images using the command below. In place of 'image=@C:\Users', give the complete path of your image file. You can load any number of images. 
 
-'''
-$ curl -F "image=@C:\Users\parulpep\Documents\GitHub\Queues/img/morning.jpg" localhost:3000/upload
-'''
+
+        $ curl -F "image=@C:\Users\parulpep\Documents\GitHub\Queues/img/morning.jpg" localhost:3000/upload
+
 
 * Then, run localhost:3000/meow, the latest uploaded image is shown. With each refresh, the next image is shown thus showing removal of the displayed image.
 
@@ -45,22 +45,3 @@ $ curl -F "image=@C:\Users\parulpep\Documents\GitHub\Queues/img/morning.jpg" loc
 * Run proxy.js using the command 'node proxy.js'
 * If we try running localhost:3002, it will get redirected to local:3000.
 * 3002 acts as a proxy server. 
-
-
-### Cat picture uploads: queue
-
-Implement two routes, `/upload`, and `/meow`.
- 
-A stub for upload and meow has already been provided.
-
-Use curl to help you upload easily.
-
-      	curl -F "image=@./img/morning.jpg" localhost:3000/upload
-
-Have `upload` store the images in a queue.  Have `meow` display the most recent image to the client and *remove* the image from the queue.
-
-### Proxy server
-
-Bonus: How might you use redis and express to introduce a proxy server?
-
-See [rpoplpush](http://redis.io/commands/rpoplpush)
