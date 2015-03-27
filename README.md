@@ -18,17 +18,32 @@ The tasks are explained as below and the code files main.js and proxy.js have th
 * Run localhost:3000/set. This will store the key-value pair in database.
 * Run localhost:3000/get. This will display the message 'This message will self-destruct in 10 secs'
 * Try localhost:3000/get again in 10 secs. The message will dissapear from screen because expire function sets the timer for   the message as 10 sec.
+* Output:
+
+![/set route]()
+
+
+![/get route]()
+
+
+![/get route after expiry]()
+
 
 
 ## Task 2: Complete /recent
 
-* Run localhost:3000/set, localhost:3000/get and then localhost:3000/recent any number of times, the page displays the urls    visited. It will show 5 urls and it keeps on changing with each visiting url and page refresh. It shows the latest 5 urls.   The urls are displayed as below:
+* Run localhost:3000/set, localhost:3000/get and then localhost:3000/recent any number of times, the page displays the urls    visited. It will show 5 urls and it keeps on changing with each visiting url and page refresh. It shows the latest 5 urls.   The urls are displayed as below (in command line):
 
         $ node main.js
         Example app listening at http://:::3000
         Example app listening at http://:::3001
         [ '/recent', '/get', '/set', '/set', '/get' ]
         [ '/recent', '/meow', '/meow', '/meow', '/recent' ]
+
+* Output
+
+![/recent route]()
+
 
 ## Task 3: Complete upload/meow
 
@@ -39,6 +54,9 @@ The tasks are explained as below and the code files main.js and proxy.js have th
 
 
 * Then, run localhost:3000/meow, the latest uploaded image is shown. With each refresh, the next image in list is shown thus showing removal of the displayed image.
+*  Output:
+
+![/meow route]()
 
 ## Task 4: Additional service instance running
 
