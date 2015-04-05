@@ -9,7 +9,7 @@ var http=require('http');
 // Task 5
 // requests to port 3002 are diverted to port 3000
 var proxyServer = http.createServer(function(req,res){
-	res.writeHead(301, {Location: 'http://localhost:3000'+ req.url});
+	res.writeHead(302, {Location: 'http://localhost:3000'+ req.url});
        //res.redirect("http://localhost:3000" + req.url)
        res.end();
 })

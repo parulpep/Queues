@@ -64,18 +64,18 @@ app.get('/meow', function(req, res) {
  
 
 // HTTP SERVER
- var server = app.listen(3000, function () {
+ var server = app.listen(5060, function () {
 
-   var host = server.address().address
-   var port = server.address().port
+     var host = server.address().address
+     var port = server.address().port
 
-   console.log('Example app listening at http://%s:%s', host, port)
- })
+     console.log('Example app listening at http://%s:%s', host, port)
+   })
  
  // HTTP SERVER
  // Task 4
  // Running another instance on different port (number 3001)
- var server1 = app.listen(3001, function () {
+ var server1 = app.listen(9090, function () {
 
    var host1 = server1.address().address
    var port1 = server1.address().port
@@ -97,3 +97,10 @@ app.get('/meow', function(req, res) {
   client.expire("key",10);    // This will expire the key.
 })
 
+app.get('/switch', function(req, res) {
+  if(TARGET == BLUE)
+     TARGET = GREEN;
+  else
+     TARGET = BLUE;
+ 
+})
